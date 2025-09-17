@@ -1,202 +1,163 @@
+/*
+AdminDashboard.jsx
+React + Tailwind (no TypeScript)
+
+Install:
+  npm install react-icons recharts
+
+Usage:
+  - Ensure Tailwind is configured in your project (Create React App / Vite / Next.js + Tailwind)
+  - Drop this file into your components folder and import <AdminDashboard /> in App.jsx
+*/
+
 import React from "react";
-import { useSelector } from "react-redux";
-// import './d.css'
-import {
-  FaFacebookF,
-  FaTwitter,
-  FaInstagram,
-  FaYoutube,
-  FaTumblr,
-} from "react-icons/fa";
-const Dashboard = () => {
-  const images = [
-    "https://i.ibb.co.com/vxFkdXfM/2-FB210-C1-C459-4257-8445-238-BF14-C08-B1-1-105-c.jpg", // top row
-    "https://i.ibb.co.com/vxFkdXfM/2-FB210-C1-C459-4257-8445-238-BF14-C08-B1-1-105-c.jpg", // top row
-    "https://i.ibb.co.com/vxFkdXfM/2-FB210-C1-C459-4257-8445-238-BF14-C08-B1-1-105-c.jpg", // top row
-    "https://i.ibb.co.com/vxFkdXfM/2-FB210-C1-C459-4257-8445-238-BF14-C08-B1-1-105-c.jpg", // top row
-    "https://i.ibb.co.com/vxFkdXfM/2-FB210-C1-C459-4257-8445-238-BF14-C08-B1-1-105-c.jpg", // top row
-    "https://i.ibb.co.com/vxFkdXfM/2-FB210-C1-C459-4257-8445-238-BF14-C08-B1-1-105-c.jpg", // top row
-    "https://i.ibb.co.com/vxFkdXfM/2-FB210-C1-C459-4257-8445-238-BF14-C08-B1-1-105-c.jpg", // top row
-    "https://i.ibb.co.com/vxFkdXfM/2-FB210-C1-C459-4257-8445-238-BF14-C08-B1-1-105-c.jpg", // top row
-  ];
-  const user = useSelector((state) => state.auth.user);
-  console.log(user);
+import { FiUsers, FiClipboard, FiClock, FiCheckCircle, FiHome, FiSettings, FiList } from "react-icons/fi";
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, LineChart, Line, PieChart, Pie, Cell } from "recharts";
+
+const sampleData = [
+  { name: "Jan", tasks: 40, pending: 10, delivered: 30 },
+  { name: "Feb", tasks: 30, pending: 8, delivered: 22 },
+  { name: "Mar", tasks: 50, pending: 15, delivered: 35 },
+  { name: "Apr", tasks: 45, pending: 12, delivered: 33 },
+  { name: "May", tasks: 60, pending: 20, delivered: 40 },
+];
+
+const pieData = [
+  { name: "Pending", value: 18 },
+  { name: "Delivered", value: 82 },
+];
+const COLORS = ["#FF6B6B", "#4CAF50"];
+
+export default function Dashboard() {
   return (
-    // <div className="grid grid-cols-4 gap-2.5 w-full max-w-7xl mx-auto bg-black p-2.5">
-    //   <div className="bg-white border-2 border-white h-40"></div>
-    //   <div className="bg-white border-2 border-white h-40"></div>
-    //   <div className="bg-white border-2 border-white h-40"></div>
-    //   <div className="bg-white border-2 border-white h-40"></div>
-    //   <div className="bg-white border-2 border-white h-40 col-span-2"></div>
-    //   <div className="bg-white border-2 border-white h-40"></div>
-    //   <div className="bg-white border-2 border-white h-40"></div>
-    //   <div className="bg-white border-2 border-white h-40"></div>
-    // </div>
-    // <div className="min-h-screen bg-white flex flex-col items-center justify-center p-4 space-y-3">
-    //   {/* Top Row */}
-    //   <div className="flex flex-wrap w-full max-w-7xl gap-2 md:gap-3">
-    //     <div className="flex-[2] sm:flex-[2] md:flex-[2] lg:flex-[2.4]">
-    //       <img
-    //         src={images[0]}
-    //         alt="pic1"
-    //         className="w-full h-28 md:h-40 lg:h-56 object-cover rounded-lg"
-    //       />
-    //     </div>
-    //     <div className="flex-[4] sm:flex-[4] md:flex-[4] lg:flex-[4] ">
-    //       <img
-    //         src={images[1]}
-    //         alt="pic2"
-    //         className="w-full h-28 md:h-40 lg:h-56 object-cover rounded-lg"
-    //       />
-    //     </div>
-    //     <div className="flex-[4] sm:flex-[4] md:flex-[4] lg:flex-[4] ">
-    //       <img
-    //         src={images[2]}
-    //         alt="pic3"
-    //         className="w-full h-28 md:h-40 lg:h-56 object-cover rounded-lg"
-    //       />
-    //     </div>
-    //     <div className="flex-[2] sm:flex-[2] md:flex-[2] lg:flex-[2.4] ">
-    //       <img
-    //         src={images[3]}
-    //         alt="pic4"
-    //         className="w-full h-28 md:h-40 lg:h-56 object-cover rounded-lg"
-    //       />
-    //     </div>
-    //   </div>
-
-    //   {/* Bottom Row */}
-    //   <div className="flex flex-wrap w-full max-w-7xl  gap-2 md:gap-3">
-    //     <div className="flex-[2.5] sm:flex-[3] md:flex-[2.5] lg:flex-[2.8] ">
-    //       <img
-    //         src={images[4]}
-    //         alt="pic5"
-    //         className="w-full h-28 md:h-40 lg:h-56 object-cover rounded-lg"
-    //       />
-    //     </div>
-    //     <div className="flex-[4] sm:flex-[4] md:flex-[4] lg:flex-[3.8] ">
-    //       <img
-    //         src={images[5]}
-    //         alt="pic6"
-    //         className="w-full h-28 md:h-40 lg:h-56 object-cover rounded-lg"
-    //       />
-    //     </div>
-    //     <div className="flex-[4] sm:flex-[4] md:flex-[4] lg:flex-[3.8] ">
-    //       <img
-    //         src={images[6]}
-    //         alt="pic7"
-    //         className="w-full h-28 md:h-40 lg:h-56 object-cover rounded-lg"
-    //       />
-    //     </div>
-    //     <div className="flex-[1.5] sm:flex-[2] md:flex-[1.5] lg:flex-[2] ">
-    //       <img
-    //         src={images[7]}
-    //         alt="pic8"
-    //         className="w-full h-28 md:h-40 lg:h-56 object-cover rounded-lg"
-    //       />
-    //     </div>
-    //   </div>
-    // </div>
-    <div className="bg-gray-50">
-      {/* Call To Action */}
-      <div className="max-w-[1240px] mx-auto px-6 py-12">
-        <div className="bg-[#FF006A] text-white rounded-2xl flex flex-col items-center justify-center text-center p-12 h-[480px]">
-          <h2 className="text-3xl md:text-5xl font-bold mb-4">
-            Ready To Book Your Next <br /> Event Pro?
-          </h2>
-          <p className="mb-6 text-xl">
-            Get a price in seconds and secure your perfect host today.
-          </p>
-          <button className="bg-white text-[#FF006A] font-medium px-6 py-2 rounded-full hover:bg-gray-100 transition">
-            Get An Instant Quote
-          </button>
+    <div className="flex min-h-screen bg-gray-100 text-gray-800">
+      {/* Sidebar */}
+      <aside className="w-64 bg-gray-800 text-white p-6 flex-shrink-0">
+        <div className="mb-8">
+          <h1 className="text-2xl font-bold">Admin</h1>
+          <p className="text-sm text-gray-300">Overview</p>
         </div>
-      </div>
 
-      {/* Footer */}
-      <footer className="max-w-6xl mx-auto px-6 py-12 border-t border-gray-200 h-[711px]">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-          {/* Brand */}
-          <div>
-            <h3 className="font-bold text-lg flex items-center gap-2 mb-3">
-              <span role="img" aria-label="logo">
-                🧑‍💼
-              </span>
-              Hunky Butler Service
-            </h3>
-            <p className="text-sm text-gray-600 mb-4">
-              Our Platform Simplifies Event Staffing By Connecting Hosts With
-              Verified Professionals and Seamless Tools For Unforgettable
-              Experiences.
-            </p>
-            <p className="text-sm text-gray-800">
-              📧 <span className="underline">info@hunkybutlerserv.com</span>
-            </p>
-            <p className="text-sm text-gray-800">📞 + (907) 555-0101</p>
-            <div className="flex gap-4 mt-4 text-gray-600 text-lg">
-              <FaFacebookF className="cursor-pointer hover:text-pink-500" />
-              <FaTwitter className="cursor-pointer hover:text-pink-500" />
-              <FaInstagram className="cursor-pointer hover:text-pink-500" />
-              <FaYoutube className="cursor-pointer hover:text-pink-500" />
-              <FaTumblr className="cursor-pointer hover:text-pink-500" />
+        <nav>
+          <ul className="space-y-3">
+            <li className="flex items-center gap-3 p-2 rounded-lg hover:bg-gray-700 cursor-pointer">
+              <FiHome size={18} />
+              <span>Dashboard</span>
+            </li>
+            <li className="flex items-center gap-3 p-2 rounded-lg hover:bg-gray-700 cursor-pointer">
+              <FiUsers size={18} />
+              <span>Users</span>
+            </li>
+            <li className="flex items-center gap-3 p-2 rounded-lg hover:bg-gray-700 cursor-pointer">
+              <FiList size={18} />
+              <span>Tasks</span>
+            </li>
+            <li className="flex items-center gap-3 p-2 rounded-lg hover:bg-gray-700 cursor-pointer">
+              <FiSettings size={18} />
+              <span>Settings</span>
+            </li>
+          </ul>
+        </nav>
+
+        <div className="mt-auto pt-6 text-sm text-gray-400">
+          © {new Date().getFullYear()} Your Company
+        </div>
+      </aside>
+
+      {/* Main content */}
+      <main className="flex-1 p-8">
+        <header className="flex items-center justify-between mb-6">
+          <h2 className="text-2xl font-semibold">Dashboard Overview</h2>
+          <div className="text-sm text-gray-600">Welcome back, Admin</div>
+        </header>
+
+        {/* Cards */}
+        <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+          <div className="bg-white p-5 rounded-xl shadow flex items-center gap-4">
+            <div className="p-3 rounded-md bg-indigo-50 text-indigo-600">
+              <FiUsers size={22} />
+            </div>
+            <div>
+              <p className="text-sm text-gray-500">Total Users</p>
+              <p className="text-2xl font-bold">1,240</p>
             </div>
           </div>
 
-          {/* Quick Links */}
-          <div>
-            <h4 className="font-semibold mb-3">Quick Links</h4>
-            <ul className="space-y-2 text-sm text-gray-600">
-              <li>Blog</li>
-              <li>About Us</li>
-              <li>Contact</li>
-              <li>Review</li>
-              <li>Services</li>
-            </ul>
-          </div>
-
-          {/* Legal */}
-          <div>
-            <h4 className="font-semibold mb-3">Legal</h4>
-            <ul className="space-y-2 text-sm text-gray-600">
-              <li>Privacy Policy</li>
-              <li>Terms Of Services</li>
-              <li>Cancellation Policy</li>
-            </ul>
-          </div>
-
-          {/* Newsletter */}
-          <div>
-            <h4 className="font-semibold mb-3">
-              Keep Up With The Latest Update
-            </h4>
-            <p className="text-sm text-gray-600 mb-4">
-              Join Our Newsletter To Stay Up-to-Date On Features And Releases.
-            </p>
-            <div className="flex items-center gap-2">
-              <input
-                type="email"
-                placeholder="Enter Your Email"
-                className="flex-1 px-4 py-2 rounded-full border border-gray-300 focus:outline-none text-sm"
-              />
-              <button className="bg-pink-500 text-white px-5 py-2 rounded-full text-sm hover:bg-pink-600 transition">
-                Subscribe
-              </button>
+          <div className="bg-white p-5 rounded-xl shadow flex items-center gap-4">
+            <div className="p-3 rounded-md bg-blue-50 text-blue-600">
+              <FiClipboard size={22} />
             </div>
-            <p className="text-xs text-gray-500 mt-2">
-              By Subscribing You Agree To Our{" "}
-              <span className="text-pink-500 cursor-pointer">
-                Privacy Policy
-              </span>
-            </p>
+            <div>
+              <p className="text-sm text-gray-500">Total Tasks</p>
+              <p className="text-2xl font-bold">3,500</p>
+            </div>
           </div>
-        </div>
 
-        <div className="text-center mt-8 text-gray-500 text-sm">
-          © 2025 Hunky butler serv. All Rights Reserved.
-        </div>
-      </footer>
+          <div className="bg-white p-5 rounded-xl shadow flex items-center gap-4">
+            <div className="p-3 rounded-md bg-yellow-50 text-yellow-600">
+              <FiClock size={22} />
+            </div>
+            <div>
+              <p className="text-sm text-gray-500">Pending Tasks</p>
+              <p className="text-2xl font-bold">120</p>
+            </div>
+          </div>
+
+          <div className="bg-white p-5 rounded-xl shadow flex items-center gap-4">
+            <div className="p-3 rounded-md bg-green-50 text-green-600">
+              <FiCheckCircle size={22} />
+            </div>
+            <div>
+              <p className="text-sm text-gray-500">Delivered Tasks</p>
+              <p className="text-2xl font-bold">3,380</p>
+            </div>
+          </div>
+        </section>
+
+        {/* Charts */}
+        <section className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <div className="bg-white p-6 rounded-xl shadow">
+            <h3 className="font-semibold mb-4">Tasks Overview (Monthly)</h3>
+            <div className="flex justify-center">
+              <BarChart width={340} height={240} data={sampleData}>
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis dataKey="name" />
+                <YAxis />
+                <Tooltip />
+                <Bar dataKey="tasks" fill="#8884d8" />
+              </BarChart>
+            </div>
+          </div>
+
+          <div className="bg-white p-6 rounded-xl shadow">
+            <h3 className="font-semibold mb-4">Pending vs Delivered</h3>
+            <div className="flex justify-center">
+              <LineChart width={340} height={240} data={sampleData}>
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis dataKey="name" />
+                <YAxis />
+                <Tooltip />
+                <Line type="monotone" dataKey="pending" stroke="#FF6B6B" strokeWidth={2} />
+                <Line type="monotone" dataKey="delivered" stroke="#4CAF50" strokeWidth={2} />
+              </LineChart>
+            </div>
+          </div>
+
+          <div className="bg-white p-6 rounded-xl shadow">
+            <h3 className="font-semibold mb-4">Task Distribution</h3>
+            <div className="flex justify-center">
+              <PieChart width={340} height={240}>
+                <Pie data={pieData} cx="50%" cy="50%" outerRadius={80} dataKey="value" label>
+                  {pieData.map((entry, index) => (
+                    <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                  ))}
+                </Pie>
+                <Tooltip />
+              </PieChart>
+            </div>
+          </div>
+        </section>
+      </main>
     </div>
   );
-};
-
-export default Dashboard;
+}
