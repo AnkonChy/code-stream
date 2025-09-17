@@ -15,7 +15,7 @@ const Login = () => {
     e.preventDefault();
     try {
       await loginWithEmail(dispatch, email, password);
-      navigate("/signUp"); // register success hole home e pathabe
+      navigate("/dashboard"); // register success hole home e pathabe
     } catch (error) {
       console.error("Login failed:", error);
     }
